@@ -1,0 +1,557 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Teste de Iframe</title>
+		<script src="https://cdn.jsdelivr.net/gh/iconatus/cdn@main/iframe/js/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconatus/cdn@main/iframe/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/gh/iconatus/cdn@main/iframe/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/gh/iconatus/cdn@main/iframe/css/css.css" rel="stylesheet">
+		
+		<script type="text/javascript">
+		
+			
+		</script>
+		
+        <style>
+            body{overflow-x: hidden;}
+            .container{
+                max-width: 100%;
+            }
+            h1,h2,h3,h4,h5,h6,p,li,.big-x{
+                font-family: 'Roboto', sans-serif;
+            }
+            li{list-style: none;}
+            h1{text-transform: capitalize;}
+            h3{text-transform: capitalize;}
+            p{
+                font-family: 10px;
+                margin: 0 0 20px;
+            }
+            body{
+                background-color: rgba(0,0,0,0);
+            }
+            .botao{text-align: center;}
+            .iconatusmodal{
+                padding: 5vh 5vw;
+                width: 100%;
+                overflow:hidden!important;
+                position:absolute;
+                right: 1.5vw;
+                opacity: 0;
+                top: -100vh;
+                background-color: rgb(255,255,255);
+                width: 95vw;
+                transition: all 1s ease-in-out;
+                height: auto;
+                box-sizing: border-box;
+                box-shadow: 0 0 5px 5px rgba(0,0,0,.3);
+                border-radius: 10px;
+                box-shadow: 0 0 100vw 100vh rgba(0,0,0,.85);
+                z-index: 99;
+            }
+            @media only screen and (max-width: 580px){
+                .iconatusmodal{
+                    height: 95vh;
+                }
+            }
+            .iconatusmodal ul{
+                list-style: none;
+            }
+            .iconatusmodal h2{
+                text-transform: capitalize;
+            }
+            .iconatusmodal *{
+                color: #0355a7;
+            }
+           .big-x{
+                font-size: 1em;
+                font-weight: 800;
+                text-decoration: none;
+                color: red;
+            }
+            .big-x:hover{
+                color: red;
+            }
+            ul{padding-left: 0;}
+            .botao{
+                border: 1px solid #e2e2e2;
+                margin: 10px 5px;
+                padding: 20px 10px 10px;
+                border-radius: 5px;
+                transition: border ease-in-out .2s;
+            }
+            .botao:hover{
+                border: 1px solid #8d8d8d;
+            }
+            .botao a{
+                display: block;
+                text-decoration: none;
+                color: #383838;
+            }
+            #invisiblebox {
+                width: 100vw; height: 100vh;
+                margin: 0;
+                padding: 0;
+                display: block;
+                position: absolute;
+                left: 100%;
+                background-color: rgba(0,0,0,0);
+                z-index: 98;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="invisiblebox"></div>
+        <span id="span_erro_request" style="visibility: hidden;">
+            <span id="span_msg_erro_req"></span>
+        </span>
+        <span id="span_container_principal" style="visibility: hidden;">
+            <div class="container">
+                <ul class="row botoes">
+                    <!-- BOTÃO METRO -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('metro');">
+                                <img src="https://www.iconatus.com.br/iframe/img/metro.png">
+                                <h3>Metrô</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('metro');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO PARQUES -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('parque');">
+                                <img src="https://www.iconatus.com.br/iframe/img/parque.png">
+                                <h3>Parque</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('parque');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO ESCOLAS -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('escola');">
+                                <img src="https://www.iconatus.com.br/iframe/img/escola.png">
+                                <h3>Escola</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('escola');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO CLUBES -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('clube');">
+                                <img src="https://www.iconatus.com.br/iframe/img/clube.png">
+                                <h3>Clube</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('clube');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO FEIRAS -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('feira');">
+                                <img src="https://www.iconatus.com.br/iframe/img/feira.jpg">
+                                <h3>Feira</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('feira');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO HOSPITAIS -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('hospital');">
+                                <img src="https://www.iconatus.com.br/iframe/img/hospital.png">
+                                <h3>Hospital</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('hospital');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO CICLOVIAS -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('ciclo');">
+                                <img src="https://www.iconatus.com.br/iframe/img/ciclo.png">
+                                <h3>Ciclovia</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('ciclo');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    <!-- BOTÃO ONIBUS -->
+                    <li class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="botao">
+                            <a href="javascript:void(0);" onclick="show('onibus');">
+                                <img src="https://www.iconatus.com.br/iframe/img/onibus.png">
+                                <h3>Ônibus</h3>
+                                <p class="hidedesktop"><small><a href="javascript:void(0);" onclick="show('onibus');">Veja detalhes</a></small></p>
+                            </a>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <p>Powered by <a target="_blank" href="https://iconatus.com.br/">iConatus</a></p>
+            </div>
+        </span>
+
+        <!-- METRÔ -->
+        <div class="iconatusmodal text-left" id="metro">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Estações de Metrô Próximas</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('metro');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_metro_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_metro_0_dist"></span></li>
+						<li><b>Linha</b>: <span id="edi_metro_0_linha"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_metro_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_metro_1_dist"></span></li>
+						<li><b>Linha</b>: <span id="edi_metro_1_linha"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_metro_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_metro_2_dist"></span></li>
+						<li><b>Linha</b>: <span id="edi_metro_2_linha"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_metro_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_metro_3_dist"></span></li>
+						<li><b>Linha</b>: <span id="edi_metro_3_linha"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PARQUES -->
+        <div class="iconatusmodal text-left" id="parque">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Parques Próximos</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('parque');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_parque_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_parque_0_dist"></span></li>
+						<li><b>Área</b>: <span id="edi_parque_0_area"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_parque_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_parque_1_dist"></span></li>
+						<li><b>Área</b>: <span id="edi_parque_1_area"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_parque_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_parque_2_dist"></span></li>
+						<li><b>Área</b>: <span id="edi_parque_2_area"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_parque_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_parque_3_dist"></span></li>
+						<li><b>Área</b>: <span id="edi_parque_3_area"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESCOLAS -->
+        <div class="iconatusmodal text-left" id="escola">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Escolas Próximas</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('escola');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_escola_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_escola_0_dist"></span></li>
+						<li><b>ENEM</b>: <span id="edi_escola_0_enem"></span></li>
+						<li><b>Endereço</b>: <span id="edi_escola_0_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_escola_0_tel"></span></li>
+						<li><b>Email</b>: <span id="edi_escola_0_email"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_escola_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_escola_1_dist"></span></li>
+						<li><b>ENEM</b>: <span id="edi_escola_1_enem"></span></li>
+						<li><b>Endereço</b>: <span id="edi_escola_1_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_escola_1_tel"></span></li>
+						<li><b>Email</b>: <span id="edi_escola_1_email"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_escola_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_escola_2_dist"></span></li>
+						<li><b>ENEM</b>: <span id="edi_escola_2_enem"></span></li>
+						<li><b>Endereço</b>: <span id="edi_escola_2_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_escola_2_tel"></span></li>
+						<li><b>Email</b>: <span id="edi_escola_2_email"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_escola_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_escola_3_dist"></span></li>
+						<li><b>ENEM</b>: <span id="edi_escola_3_enem"></span></li>
+						<li><b>Endereço</b>: <span id="edi_escola_3_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_escola_3_tel"></span></li>
+						<li><b>Email</b>: <span id="edi_escola_3_email"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLUBES -->
+        <div class="iconatusmodal text-left" id="clube">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Clubes Próximos</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('clube');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+						<li><b>Nome</b>: <span id="edi_clube_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_clube_0_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_clube_0_end"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_clube_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_clube_1_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_clube_1_end"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_clube_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_clube_2_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_clube_2_end"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_clube_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_clube_3_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_clube_3_end"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- FEIRAS -->
+        <div class="iconatusmodal text-left" id="feira">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Feiras Próximas</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('feira');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+						<li><b>Nome</b>: <span id="edi_feira_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_feira_0_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_feira_0_end"></span></li>
+						<li><b>Dia da Semana</b>: <span id="edi_feira_0_dia"></span></li>
+						<li><b>Feirantes</b>: <span id="edi_feira_0_nro"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_feira_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_feira_1_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_feira_1_end"></span></li>
+						<li><b>Dia da Semana</b>: <span id="edi_feira_1_dia"></span></li>
+						<li><b>Feirantes</b>: <span id="edi_feira_1_nro"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_feira_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_feira_2_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_feira_2_end"></span></li>
+						<li><b>Dia da Semana</b>: <span id="edi_feira_2_dia"></span></li>
+						<li><b>Feirantes</b>: <span id="edi_feira_2_nro"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_feira_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_feira_3_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_feira_3_end"></span></li>
+						<li><b>Dia da Semana</b>: <span id="edi_feira_3_dia"></span></li>
+						<li><b>Feirantes</b>: <span id="edi_feira_3_nro"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOSPITAIS -->
+        <div class="iconatusmodal text-left" id="hospital">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Hospitais Próximos</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('hospital');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_hosp_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_hosp_0_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_hosp_0_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_hosp_0_tel"></span></li>
+						<li><b>CEP</b>: <span id="edi_hosp_0_cep"></span></li>
+						<li><b>Tipo</b>: <span id="edi_hosp_0_tipo"></span></li>
+						<li><b>Classe</b>: <span id="edi_hosp_0_classe"></span></li>
+						<li><b>Leitos</b>: <span id="edi_hosp_0_leitos"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_hosp_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_hosp_1_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_hosp_1_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_hosp_1_tel"></span></li>
+						<li><b>CEP</b>: <span id="edi_hosp_1_cep"></span></li>
+						<li><b>Tipo</b>: <span id="edi_hosp_1_tipo"></span></li>
+						<li><b>Classe</b>: <span id="edi_hosp_1_classe"></span></li>
+						<li><b>Leitos</b>: <span id="edi_hosp_1_leitos"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_hosp_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_hosp_2_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_hosp_2_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_hosp_2_tel"></span></li>
+						<li><b>CEP</b>: <span id="edi_hosp_2_cep"></span></li>
+						<li><b>Tipo</b>: <span id="edi_hosp_2_tipo"></span></li>
+						<li><b>Classe</b>: <span id="edi_hosp_2_classe"></span></li>
+						<li><b>Leitos</b>: <span id="edi_hosp_2_leitos"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_hosp_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_hosp_3_dist"></span></li>
+						<li><b>Endereço</b>: <span id="edi_hosp_3_end"></span></li>
+						<li><b>Contato</b>: <span id="edi_hosp_3_tel"></span></li>
+						<li><b>CEP</b>: <span id="edi_hosp_3_cep"></span></li>
+						<li><b>Tipo</b>: <span id="edi_hosp_3_tipo"></span></li>
+						<li><b>Classe</b>: <span id="edi_hosp_3_classe"></span></li>
+						<li><b>Leitos</b>: <span id="edi_hosp_3_leitos"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CICLOVIAS -->
+        <div class="iconatusmodal text-left" id="ciclo">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Ciclovias Próximas</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('ciclo');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+						<li><b>Nome</b>: <span id="edi_ciclo_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_ciclo_0_dist"></span></li>
+						<li><b>Extensão</b>: <span id="edi_ciclo_0_ext"></span></li>
+						<li><b>Inauguração</b>: <span id="edi_ciclo_0_data"></span></li>
+						<li><b>Tipo</b>: <span id="edi_ciclo_0_tipo"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_ciclo_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_ciclo_1_dist"></span></li>
+						<li><b>Extensão</b>: <span id="edi_ciclo_1_ext"></span></li>
+						<li><b>Inauguração</b>: <span id="edi_ciclo_1_data"></span></li>
+						<li><b>Tipo</b>: <span id="edi_ciclo_1_tipo"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_ciclo_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_ciclo_2_dist"></span></li>
+						<li><b>Extensão</b>: <span id="edi_ciclo_2_ext"></span></li>
+						<li><b>Inauguração</b>: <span id="edi_ciclo_2_data"></span></li>
+						<li><b>Tipo</b>: <span id="edi_ciclo_2_tipo"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_ciclo_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_ciclo_3_dist"></span></li>
+						<li><b>Extensão</b>: <span id="edi_ciclo_3_ext"></span></li>
+						<li><b>Inauguração</b>: <span id="edi_ciclo_3_data"></span></li>
+						<li><b>Tipo</b>: <span id="edi_ciclo_3_tipo"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÔNIBUS -->
+        <div class="iconatusmodal text-left" id="onibus">
+            <div class="row max-2-mobile">
+                <div class="col-md-6"><h2>Pontos de Ônibus Próximos</h2></div>
+                <div class="col-md-6 text-right"><a href="javascript:void(0);" onclick="fecheme('onibus');" class="big-x">Fechar</a></div>
+            </div>
+            <div class="row ">
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_bus_0_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_bus_0_dist"></span></li>
+						<li><b>Referência</b>: <span id="edi_bus_0_ref"></span></li>
+						<li><b>Endereço</b>: <span id="edi_bus_0_end"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_bus_1_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_bus_1_dist"></span></li>
+						<li><b>Referência</b>: <span id="edi_bus_1_ref"></span></li>
+						<li><b>Endereço</b>: <span id="edi_bus_1_end"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_bus_2_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_bus_2_dist"></span></li>
+						<li><b>Referência</b>: <span id="edi_bus_2_ref"></span></li>
+						<li><b>Endereço</b>: <span id="edi_bus_2_end"></span></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <ul>
+                        <li><b>Nome</b>: <span id="edi_bus_3_nome"></span></li>
+						<li><b>Distância</b>: <span id="edi_bus_3_dist"></span></li>
+						<li><b>Referência</b>: <span id="edi_bus_3_ref"></span></li>
+						<li><b>Endereço</b>: <span id="edi_bus_3_end"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    
+</html>
