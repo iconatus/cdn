@@ -69,6 +69,11 @@ function carregaDadosPois(data) {
 		document.getElementById("edi_parque_" + i + "_dist").innerHTML = frmt.format(data.Parques[i].Distancia) + 'm';
 		document.getElementById("edi_parque_" + i + "_area").innerHTML = frmt.format(data.Parques[i].Area) + 'm²';
 	}
+	
+	if(data.Parameters.Show == true)
+		document.getElementById("p_Powered_iConatus").style.visibility = "visible";
+		else		
+		document.getElementById("p_Powered_iConatus").style.visibility = "hidden";
 }
 
 function formataTelefone(t) {
