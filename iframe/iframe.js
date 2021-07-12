@@ -117,7 +117,8 @@ function getEDiData(path, callback) {
 	httpRequest.open('GET', path);
 	
 	httpRequest.onreadystatechange = function() {
-		if (httpRequest.readyState === 4) {
+		if (httpRequest.readyState === 4) {	
+			
 			if (httpRequest.status === 200) {
 				document.getElementById("span_container_principal").style.visibility = "visible";
 				document.getElementById("span_erro_request").style.visibility = "hidden";				
@@ -127,6 +128,11 @@ function getEDiData(path, callback) {
 			else {
 				document.getElementById("span_container_principal").style.visibility = "hidden";
 				document.getElementById("span_erro_request").style.visibility = "visible";
+				
+				if(httpRequest.status === 204){ //Não encontrou					
+					document.getElementById('divPOIs').innerHTML = "";
+					return;
+				}
 
 				if (httpRequest.status === 401) {
 					document.getElementById("span_msg_erro_req").innerHTML = "<p>Usuário não autorizado</p>"
