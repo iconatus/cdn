@@ -1,7 +1,7 @@
 
 function carregaFrameEdi(token, idImovel) {
 	includeHTML();
-	getEDiData('https://api.iconatus.com.br:9010/edis/details?chave=' + token + '&cod_imovel=' + idImovel, carregaDadosPois);
+	getEDiData('https://api-pois.iconatus.dev.br/edis/details?chave=' + token + '&cod_imovel=' + idImovel, carregaDadosPois);
 }
 
 function carregaDadosPois(data) {
